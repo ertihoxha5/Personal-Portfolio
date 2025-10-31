@@ -1,0 +1,11 @@
+{
+  "name": "ertihoxha",
+  "main": "src/index.js",
+  "compatibility_date": "2025-10-31",
+  "assets": {
+    "directory": "./dist"
+  },
+  "site": {
+    "bucket": "./dist"
+  }
+}
