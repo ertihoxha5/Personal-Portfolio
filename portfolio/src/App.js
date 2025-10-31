@@ -219,88 +219,8 @@ const AdvancedPortfolio = () => {
     }
   ];
 
-  // Enhanced blog posts with interactions
-  const blogPosts = [
-    { 
-      id: 1,
-      title: 'Mastering React Hooks', 
-      excerpt: 'Deep dive into advanced React patterns and best practices for modern web development.', 
-      content: 'In this comprehensive guide, we explore advanced React Hooks patterns, custom hooks, and performance optimization techniques...',
-      date: '2024-01-15',
-      author: 'Erti Hoxha',
-      readTime: '8 min read',
-      category: 'React',
-      likes: 24,
-      rating: 4.5,
-      comments: [
-        { id: 1, user: 'John Doe', comment: 'Great article! Very helpful for understanding hooks.', date: '2024-01-16', likes: 2 }
-      ]
-    },
-    { 
-      id: 2,
-      title: 'Building Scalable APIs with Node.js', 
-      excerpt: 'Tips for creating robust and performant backend services that scale effortlessly.', 
-      content: 'Learn how to build scalable RESTful APIs with Node.js, Express, and modern database technologies...',
-      date: '2024-01-10',
-      author: 'Erti Hoxha',
-      readTime: '12 min read',
-      category: 'Backend',
-      likes: 18,
-      rating: 4.8,
-      comments: [
-        { id: 1, user: 'Sarah Smith', comment: 'Excellent guide on API design patterns!', date: '2024-01-12', likes: 1 }
-      ]
-    },
-    { 
-      id: 3,
-      title: 'The Future of AI in Web Development', 
-      excerpt: 'Exploring how machine learning is revolutionizing the web development landscape.', 
-      content: 'Discover how AI and ML technologies are being integrated into modern web applications...',
-      date: '2024-01-05',
-      author: 'Erti Hoxha',
-      readTime: '10 min read',
-      category: 'AI',
-      likes: 31,
-      rating: 4.7,
-      comments: []
-    }
-  ];
-
-  const handleBlogInteraction = (postId, type, value = null) => {
-    setBlogInteractions(prev => {
-      const newInteractions = { ...prev };
-      if (!newInteractions[postId]) {
-        newInteractions[postId] = { liked: false, rated: false, userRating: 0 };
-      }
-      
-      if (type === 'like') {
-        newInteractions[postId].liked = !newInteractions[postId].liked;
-      } else if (type === 'rate' && value) {
-        newInteractions[postId].rated = true;
-        newInteractions[postId].userRating = value;
-      }
-      
-      return newInteractions;
-    });
-  };
-
-  const addBlogComment = (postId, comment) => {
-    const postIndex = blogPosts.findIndex(post => post.id === postId);
-    if (postIndex !== -1 && comment.trim()) {
-      const newComment = {
-        id: Date.now(),
-        user: 'You',
-        comment: comment,
-        date: new Date().toLocaleDateString(),
-        likes: 0
-      };
-      blogPosts[postIndex].comments.push(newComment);
-      setBlogInteractions(prev => ({
-        ...prev,
-        [postId]: { ...prev[postId], newComment: '' }
-      }));
-    }
-  };
+  
+  
 
   // Updated skills with all your technologies
   const skills = [
@@ -316,30 +236,55 @@ const AdvancedPortfolio = () => {
 
   const experiences = [
     { 
-      title: 'Full Stack Developer', 
+      title: 'Full Stack Developer Intern', 
       company: 'Tectigon Academy', 
-      period: '2023', 
+      period: '2025', 
       description: 'Completed comprehensive full-stack programming training with focus on modern web technologies and freelance development.',
-      technologies: ['UI/UX Design', 'Figma', 'HTML CSS JS', 'PHP & MySQL', 'React JS', 'Java'],
+      technologies: ['UI/UX Design', 'Figma', 'HTML CSS JS', 'PHP & MySQL', 'React JS', 'MongoDb'],
       achievements: ['Mastered full-stack development', 'Gained freelance skills', 'Built multiple projects']
     },
     { 
-      title: 'IoT & Cloud Solutions', 
-      company: 'UBT International Summer Academy', 
-      period: '2023', 
-      description: 'Advanced training in IoT technologies, cloud solutions and scalable development methodologies.',
-      technologies: ['Advanced IoT', 'Cloud Solution', 'Scalable Development'],
-      achievements: ['Learned advanced IoT concepts', 'Gained cloud solution expertise', 'Understood scalable development']
-    },
-    { 
-      title: 'DevOps Specialist', 
-      company: 'Digital School', 
-      period: '2023', 
-      description: 'Specialized DevOps training focusing on modern infrastructure, automation and containerization.',
-      technologies: ['Linux', 'Git', 'GitHub', 'Nginx', 'Databases', 'Containerization', 'Automation'],
-      achievements: ['Mastered DevOps practices', 'Learned modern infrastructure', 'Gained automation skills']
+      title: 'Graphic Design Intern', 
+      company: 'Adliens', 
+      period: '2024', 
+      description: 'Advanced training in Graphic Design and Social Media.',
+      technologies: ['Adobe Photoshop'],
+      achievements: ['Learned advanced Graphic Design Concepts']
     }
   ];
+   
+  const roadmap = [
+  {
+    year: '2022',
+    title: 'Started Web Development',
+    desc: 'Mastered HTML, CSS, JavaScript, and Responsive Design fundamentals.',
+    icon: <FaCode />
+  },
+  {
+    year: '2022',
+    title: 'Digital School IT Program',
+    desc: 'Learned Networking, Cybersecurity, Media Tech, and Computer Architecture.',
+    icon: <FaBriefcase />
+  },
+  {
+    year: '2023',
+    title: 'Full Stack & Mobile Development',
+    desc: 'PHP, MySQL, React, React Native – built real-world applications.',
+    icon: <FaReact />
+  },
+  {
+    year: '2023',
+    title: 'DevOps & IoT Academy',
+    desc: 'Linux, Git, Automation, Cloud Solutions, and Scalable IoT systems.',
+    icon: <FaAws />
+  },
+  {
+    year: '2024+',
+    title: 'Future: AI & Leadership',
+    desc: 'Machine Learning, Microservices, System Design, and Tech Leadership.',
+    icon: <FaRobot />
+  }
+];
 
   const projects = [
     {
@@ -380,29 +325,10 @@ const AdvancedPortfolio = () => {
     }
   ];
 
-  const testimonials = [
-    { 
-      name: 'John Doe', 
-      role: 'CEO, Tech Corp', 
-      quote: 'Exceptional developer who delivers high-quality code on time. Erti transformed our digital infrastructure.',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face'
-    },
-    { 
-      name: 'Jane Smith', 
-      role: 'Project Manager', 
-      quote: 'Innovative solutions that exceeded our expectations. A true professional who understands business needs.',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face'
-    },
-    { 
-      name: 'Mike Johnson', 
-      role: 'Client', 
-      quote: 'Professional, responsive, and highly skilled. Delivered our project ahead of schedule with outstanding quality.',
-      avatar: 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=100&h=100&fit=crop&crop=face'
-    }
-  ];
+  
 
   const stats = [
-    { number: '20+', label: 'Completed Projects' },
+    { number: '10+', label: 'Completed Projects' },
     { number: '10+', label: 'Certifications' },
     { number: '15+', label: 'Technologies' },
     { number: '100%', label: 'Dedication' }
@@ -469,9 +395,7 @@ const AdvancedPortfolio = () => {
     setShowProjectModal(true);
   };
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+
 
   const navbarVariants = { hidden: { y: -100 }, visible: { y: 0, transition: { duration: 0.5 } } };
   const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.8 } } };
@@ -490,62 +414,116 @@ const AdvancedPortfolio = () => {
       minHeight: '100vh'
     }}>
       
-      {/* Navigation */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={navbarVariants}
+    {/* Navigation – Clean, Animated, No Theme */}
+<motion.div
+  initial="hidden"
+  animate="visible"
+  variants={navbarVariants}
+  style={{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    background: scrollPosition > 50 ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+    backdropFilter: scrollPosition > 50 ? 'blur(20px)' : 'none',
+    borderBottom: scrollPosition > 50 ? '1px solid rgba(0, 0, 0, 0.1)' : 'none',
+    padding: '12px 0',
+    transition: 'all 0.4s ease',
+    boxShadow: scrollPosition > 50 ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none'
+  }}
+>
+  <Navbar expand="lg" expanded={navExpanded} onToggle={setNavExpanded} variant="light">
+    <Container>
+      {/* Brand */}
+      <Navbar.Brand
+        onClick={() => scrollToSection('home')}
         style={{
-          background: scrollPosition > 50 ? (theme === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(45, 55, 72, 0.95)') : 'transparent',
-          backdropFilter: scrollPosition > 50 ? 'blur(20px)' : 'none',
-          borderBottom: scrollPosition > 50 ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
-          padding: '10px 0',
-          transition: 'all 0.3s ease'
+          fontWeight: 'bold',
+          fontSize: '1.6rem',
+          cursor: 'pointer',
+          color: '#2D3748',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
         }}
       >
-        <Navbar expand="lg" variant={theme === 'light' ? 'light' : 'dark'} expanded={navExpanded} onToggle={setNavExpanded}>
-          <Container>
-            <Navbar.Brand onClick={() => scrollToSection('home')} style={{ 
-              color: theme === 'light' ? '#2D3748' : '#F7FAFC', 
-              fontWeight: 'bold', 
-              cursor: 'pointer',
-              fontSize: '1.5rem'
-            }}>
-              <span style={{ fontSize: '1.8rem', marginRight: '10px' }}>🚀</span> Erti Hoxha
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav">
-              {navExpanded ? <FaTimes color={theme === 'light' ? '#2D3748' : '#F7FAFC'} /> : <FaBars color={theme === 'light' ? '#2D3748' : '#F7FAFC'} />}
-            </Navbar.Toggle>
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="ms-auto">
-                {['home', 'about', 'experience', 'skills', 'certifications', 'projects', 'testimonials', 'blog', 'contact'].map(section => (
-                  <Nav.Link
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    style={{ 
-                      color: theme === 'light' ? '#2D3748' : '#F7FAFC', 
-                      fontWeight: '500', 
-                      margin: '0 10px', 
-                      cursor: 'pointer',
-                      fontSize: '1rem'
-                    }}
-                  >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </Nav.Link>
-                ))}
-                <Nav.Link onClick={toggleTheme} style={{ 
-                  color: theme === 'light' ? '#2D3748' : '#F7FAFC', 
-                  cursor: 'pointer',
-                  fontWeight: '500'
-                }}>
-                  {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </motion.div>
+        ERTI HOXHA
+      </Navbar.Brand>
 
+      {/* Toggle Button */}
+      <Navbar.Toggle
+        aria-controls="responsive-navbar-nav"
+        style={{
+          border: 'none',
+          padding: '8px'
+        }}
+      >
+        {navExpanded ? (
+          <FaTimes size={20} color="#2D3748" />
+        ) : (
+          <FaBars size={20} color="#2D3748" />
+        )}
+      </Navbar.Toggle>
+
+      {/* Nav Links */}
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="ms-auto" style={{ gap: '8px' }}>
+          {[
+            'home',
+            'about',
+            'experience',
+            'skills',
+            'certifications',
+            'roadmap',
+            'projects',
+            'contact'
+          ].map((section) => (
+            <Nav.Link
+              key={section}
+              onClick={() => scrollToSection(section)}
+              style={{
+                color: '#2D3748',
+                fontWeight: '500',
+                fontSize: '1rem',
+                padding: '8px 18px',
+                borderRadius: '30px',
+                transition: 'all 0.3s ease',
+                textTransform: 'capitalize',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
+                e.currentTarget.style.color = '#667eea';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#2D3748';
+              }}
+            >
+              {section === 'roadmap' ? 'Journey' : section.charAt(0).toUpperCase() + section.slice(1)}
+              {/* Animated Underline */}
+              <span
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '50%',
+                  width: 0,
+                  height: '2px',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  transition: 'all 0.3s ease',
+                  transform: 'translateX(-50%)'
+                }}
+                className="underline-animation"
+              />
+            </Nav.Link>
+          ))}
+        </Nav>
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+</motion.div>
       {/* Hero Section */}
       <section id="home" style={{ 
         background: theme === 'light' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'linear-gradient(135deg, #2D3748 0%, #4A5568 100%)', 
@@ -803,7 +781,7 @@ const AdvancedPortfolio = () => {
                   boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' 
                 }} whileHover={{ scale: 1.02 }}>
                   <img 
-                    src="https://media.licdn.com/dms/image/v2/D4D03AQE09xMGTZNkGQ/profile-displayphoto-shrink_800_800/B4DZQtvnwCGgAc-/0/1735934246700?e=1762387200&v=beta&t=DmjkUB7Ab6lYLcb4fiO2sVsGv9ZRbJtQ4cfkCnFetgQ" 
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQG7mmhkm00W3A/profile-displayphoto-scale_400_400/B4DZolqVwNGwAk-/0/1761568448745?e=1763596800&v=beta&t=-dOqCC23BYNJlXF46y43L8-LRi77WvVXGl56mh-neag" 
                     alt="About me" 
                     style={{ width: '100%', height: 'auto', display: 'block' }} 
                   />
@@ -868,25 +846,8 @@ const AdvancedPortfolio = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <motion.button 
-                  variants={fadeIn} 
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }} 
-                  style={{ 
-                    background: 'linear-gradient(135deg, #667eea, #764ba2)', 
-                    border: 'none', 
-                    padding: '15px 35px', 
-                    borderRadius: '50px', 
-                    color: '#FFFFFF', 
-                    fontWeight: '600', 
-                    cursor: 'pointer', 
-                    display: 'inline-flex', 
-                    alignItems: 'center',
-                    fontSize: '1rem'
-                  }}
-                >
-                  <FaDownload style={{ marginRight: '10px' }} /> Download CV
-                </motion.button>
+               
+               
               </Col>
             </Row>
           </motion.div>
@@ -1138,1154 +1099,694 @@ const AdvancedPortfolio = () => {
         </Container>
       </section>
 
-      {/* Certifications Section */}
-      <section id="certifications" className="py-5" style={{ 
-        background: theme === 'light' ? '#F7FAFC' : '#4A5568', 
-        color: theme === 'light' ? '#2D3748' : '#F7FAFC' 
-      }}>
-        <Container>
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.7 }} 
-            style={{ 
-              fontSize: '3rem', 
-              fontWeight: '800', 
-              color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-              position: 'relative', 
-              display: 'inline-block', 
-              marginBottom: '3rem', 
-              textAlign: 'center',
-              width: '100%'
-            }}
-          >
-            Professional <span style={{ 
-              background: theme === 'light' ? 'linear-gradient(45deg, #667eea, #764ba2)' : 'linear-gradient(45deg, #CBD5E0, #A0AEC0)', 
-              WebkitBackgroundClip: 'text', 
-              WebkitTextFillColor: 'transparent' 
-            }}>Certifications</span>
-            <span style={{ 
-              position: 'absolute', 
-              bottom: '-10px', 
-              left: '50%', 
-              transform: 'translateX(-50%)', 
-              width: '80px', 
-              height: '4px', 
-              background: theme === 'light' ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'linear-gradient(135deg, #CBD5E0, #A0AEC0)', 
-              borderRadius: '2px' 
-            }}></span>
-          </motion.h2>
-          <Row className="mt-5">
-            {certifications.map((cert, index) => (
-              <Col lg={4} md={6} key={cert.id} className="mb-4">
-                <motion.div 
-                  initial={{ opacity: 0, y: 50 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ duration: 0.5, delay: index * 0.1 }} 
-                  whileHover={{ y: -10 }}
-                >
-                  <Card style={{ 
-                    border: 'none', 
-                    borderRadius: '20px', 
-                    background: theme === 'light' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.1)', 
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)', 
-                    height: '100%',
-                    transition: 'all 0.3s ease',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{ 
-                      width: '60px', 
-                      height: '60px', 
-                      background: 'linear-gradient(135deg, #667eea, #764ba2)', 
-                      borderRadius: '50%', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center', 
-                      margin: '-30px auto 1rem', 
-                      color: '#FFFFFF', 
-                      fontSize: '1.5rem',
-                      boxShadow: '0 5px 15px rgba(102, 126, 234, 0.3)'
-                    }}>
-                      {cert.icon}
-                    </div>
-                    <Card.Body className="text-center d-flex flex-column" style={{ padding: '1.5rem' }}>
-                      <Card.Title style={{ 
-                        fontSize: '1.1rem', 
-                        fontWeight: '700', 
-                        color: theme === 'light' ? '#2D3748' : '#F7FAFC',
-                        marginBottom: '0.5rem',
-                        lineHeight: '1.4'
-                      }}>
-                        {cert.title}
-                      </Card.Title>
-                      <Card.Text style={{ 
-                        color: theme === 'light' ? '#667eea' : '#A0AEC0', 
-                        fontWeight: '600',
-                        marginBottom: '1rem',
-                        fontSize: '0.9rem'
-                      }}>
-                        {cert.issuer}
-                      </Card.Text>
-                      <div style={{ 
-                        background: 'linear-gradient(135deg, #667eea, #764ba2)', 
-                        color: '#FFFFFF', 
-                        padding: '6px 16px', 
-                        borderRadius: '20px', 
-                        fontSize: '0.8rem', 
-                        display: 'inline-block', 
-                        marginBottom: '1rem',
-                        fontWeight: '500'
-                      }}>
-                        {cert.date}
-                      </div>
-                      
-                      <Button 
-                        variant="outline-primary" 
-                        size="sm"
-                        onClick={() => setCertificateDetails(prev => ({
-                          ...prev,
-                          [cert.id]: !prev[cert.id]
-                        }))}
-                        className="mt-auto"
-                        style={{ 
-                          borderColor: '#667eea', 
-                          color: '#667eea',
-                          borderRadius: '20px',
-                          fontWeight: '500',
-                          padding: '8px 20px'
-                        }}
-                      >
-                        {certificateDetails[cert.id] ? 'Hide Details' : 'View Details'}
-                      </Button>
+ {/* Certifications Section – Professional Redesign */}
+<section id="certifications" className="py-5" style={{ background: '#F8F9FA' }}>
+  <Container>
+    {/* Section Title */}
+    <motion.h2
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      style={{
+        fontSize: '2.8rem',
+        fontWeight: '700',
+        color: '#1A1A1A',
+        textAlign: 'center',
+        marginBottom: '4rem',
+        letterSpacing: '-0.02em'
+      }}
+    >
+      <span style={{ color: '#667eea', fontWeight: '800' }}>Certified</span>{' '}
+      <span style={{ color: '#4A5568' }}>Expertise</span>
+    </motion.h2>
 
-                      {certificateDetails[cert.id] && (
-                        <motion.div 
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-3"
-                        >
-                          <div style={{ 
-                            borderTop: '1px solid #E2E8F0', 
-                            paddingTop: '1rem',
-                            textAlign: 'left'
-                          }}>
-                            <p style={{ 
-                              fontSize: '0.9rem', 
-                              color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                              marginBottom: '1rem',
-                              lineHeight: '1.5'
-                            }}>
-                              {cert.details.description}
-                            </p>
-                            <div className="mb-2">
-                              <strong style={{ 
-                                color: theme === 'light' ? '#2D3748' : '#F7FAFC',
-                                display: 'block',
-                                marginBottom: '0.5rem'
-                              }}>Skills:</strong>
-                              <div className="mt-1">
-                                {cert.details.skills.map((skill, i) => (
-                                  <Badge 
-                                    key={i}
-                                    className="me-1 mb-1"
-                                    style={{ 
-                                      background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                                      color: '#FFFFFF',
-                                      fontSize: '0.7rem',
-                                      padding: '5px 10px',
-                                      borderRadius: '15px'
-                                    }}
-                                  >
-                                    {skill}
-                                  </Badge>
-                                ))}
-                              </div>
-                            </div>
-                            <p style={{ 
-                              fontSize: '0.8rem', 
-                              color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                              marginBottom: '0'
-                            }}>
-                              <strong>Valid until:</strong> {cert.details.validity}
-                            </p>
-                            <Button 
-                              variant="link" 
-                              size="sm" 
-                              href={cert.details.link}
-                              style={{ 
-                                color: '#667eea', 
-                                textDecoration: 'none', 
-                                padding: 0,
-                                fontSize: '0.8rem',
-                                fontWeight: '500'
-                              }}
-                            >
-                              Verify Certificate →
-                            </Button>
-                          </div>
-                        </motion.div>
-                      )}
-                      
-                      <FaCertificate style={{ 
-                        fontSize: '2rem', 
-                        color: 'rgba(102, 126, 234, 0.1)', 
-                        position: 'absolute', 
-                        bottom: '10px', 
-                        right: '15px' 
-                      }} />
-                    </Card.Body>
-                  </Card>
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-5" style={{ 
-        background: theme === 'light' ? '#FFFFFF' : '#2D3748', 
-        color: theme === 'light' ? '#2D3748' : '#F7FAFC' 
-      }}>
-        <Container>
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.7 }} 
-            style={{ 
-              fontSize: '3rem', 
-              fontWeight: '800', 
-              color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-              position: 'relative', 
-              display: 'inline-block', 
-              marginBottom: '3rem', 
-              textAlign: 'center',
-              width: '100%'
-            }}
+    {/* Certifications Grid */}
+    <Row className="g-4">
+      {certifications.map((cert, index) => (
+        <Col lg={4} md={6} key={cert.id}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileHover={{ y: -8 }}
           >
-            Featured <span style={{ 
-              background: theme === 'light' ? 'linear-gradient(45deg, #667eea, #764ba2)' : 'linear-gradient(45deg, #CBD5E0, #A0AEC0)', 
-              WebkitBackgroundClip: 'text', 
-              WebkitTextFillColor: 'transparent' 
-            }}>Projects</span>
-            <span style={{ 
-              position: 'absolute', 
-              bottom: '-10px', 
-              left: '50%', 
-              transform: 'translateX(-50%)', 
-              width: '80px', 
-              height: '4px', 
-              background: theme === 'light' ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'linear-gradient(135deg, #CBD5E0, #A0AEC0)', 
-              borderRadius: '2px' 
-            }}></span>
-          </motion.h2>
-          <Row className="mt-5">
-            {projects.map((project, index) => (
-              <Col lg={4} md={6} key={project.id} className="mb-4">
-                <motion.div 
-                  initial={{ opacity: 0, y: 50 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ duration: 0.5, delay: index * 0.1 }} 
-                  whileHover={{ y: -10 }}
-                >
-                  <Card style={{ 
-                    border: 'none', 
-                    borderRadius: '20px', 
-                    background: theme === 'light' ? '#F7FAFC' : 'rgba(255, 255, 255, 0.05)', 
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)', 
-                    height: '100%',
-                    transition: 'all 0.3s ease',
-                    overflow: 'hidden'
-                  }}>
-                    <div style={{ position: 'relative', overflow: 'hidden' }}>
-                      <Card.Img 
-                        variant="top" 
-                        src={project.images[0]} 
-                        style={{ 
-                          height: '200px', 
-                          objectFit: 'cover',
-                          transition: 'transform 0.3s ease'
-                        }} 
-                        className="card-img-hover"
-                      />
-                      <div style={{ 
-                        position: 'absolute', 
-                        top: 0, 
-                        left: 0, 
-                        width: '100%', 
-                        height: '100%', 
-                        background: 'rgba(102, 126, 234, 0.9)', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
-                        opacity: 0, 
-                        transition: 'opacity 0.3s ease' 
-                      }} className="hover-show">
-                        <Button 
-                          variant="primary" 
-                          style={{ 
-                            background: '#FFFFFF',
-                            color: '#667eea', 
-                            border: 'none', 
-                            padding: '12px 25px', 
-                            borderRadius: '50px', 
-                            fontWeight: '600',
-                            fontSize: '0.9rem'
-                          }} 
-                          onClick={() => openProjectModal(project)}
-                        >
-                          View Details
-                        </Button>
-                      </div>
-                    </div>
-                    <Card.Body style={{ padding: '1.5rem' }}>
-                      <Card.Title style={{ 
-                        fontSize: '1.3rem', 
-                        fontWeight: '700', 
-                        color: theme === 'light' ? '#2D3748' : '#F7FAFC',
-                        marginBottom: '1rem'
-                      }}>
-                        {project.title}
-                      </Card.Title>
-                      <Card.Text style={{ 
-                        color: theme === 'light' ? '#4A5568' : '#CBD5E0', 
-                        marginBottom: '1.5rem', 
-                        lineHeight: '1.6',
-                        fontSize: '0.95rem'
-                      }}>
-                        {project.description}
-                      </Card.Text>
-                      <div style={{ 
-                        display: 'flex', 
-                        flexWrap: 'wrap', 
-                        gap: '0.5rem', 
-                        marginBottom: '1.5rem' 
-                      }}>
-                        {project.technologies.slice(0, 3).map((tech, i) => (
-                          <motion.span 
-                            key={i} 
-                            whileHover={{ scale: 1.1 }} 
-                            style={{ 
-                              background: 'linear-gradient(135deg, #667eea, #764ba2)', 
-                              color: '#FFFFFF', 
-                              padding: '6px 12px', 
-                              borderRadius: '20px', 
-                              fontSize: '0.75rem', 
-                              fontWeight: '500' 
-                            }}
-                          >
-                            {tech}
-                          </motion.span>
-                        ))}
-                        {project.technologies.length > 3 && (
-                          <span style={{ 
-                            background: 'rgba(102, 126, 234, 0.2)', 
-                            color: '#667eea', 
-                            padding: '6px 12px', 
-                            borderRadius: '20px', 
-                            fontSize: '0.75rem', 
-                            fontWeight: '500' 
-                          }}>
-                            +{project.technologies.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                      <div className="d-flex gap-2">
-                        <Button 
-                          variant="primary" 
-                          size="sm"
-                          onClick={() => openProjectModal(project)}
-                          style={{ 
-                            background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                            border: 'none',
-                            borderRadius: '20px',
-                            fontWeight: '500',
-                            padding: '10px 20px',
-                            fontSize: '0.9rem'
-                          }}
-                        >
-                          View Details
-                        </Button>
-                        <Button 
-                          variant="outline-primary" 
-                          size="sm"
-                          href={project.github}
-                          target="_blank"
-                          style={{ 
-                            borderColor: '#667eea',
-                            color: '#667eea',
-                            borderRadius: '20px',
-                            fontWeight: '500',
-                            padding: '10px 20px',
-                            fontSize: '0.9rem'
-                          }}
-                        >
-                          <FaGithub className="me-1" />
-                          Code
-                        </Button>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
+            <Card
+              style={{
+                border: 'none',
+                borderRadius: '16px',
+                background: '#FFFFFF',
+                height: '100%',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                overflow: 'visible',
+                position: 'relative'
+              }}
+            >
+              {/* Icon Badge */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '-20px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '48px',
+                  height: '48px',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#FFFFFF',
+                  fontSize: '1.2rem',
+                  boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                  zIndex: 2
+                }}
+              >
+                {cert.icon}
+              </div>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-5" style={{ 
-        background: theme === 'light' ? '#F7FAFC' : '#4A5568', 
-        color: theme === 'light' ? '#2D3748' : '#F7FAFC' 
-      }}>
-        <Container>
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.7 }} 
-            style={{ 
-              fontSize: '3rem', 
-              fontWeight: '800', 
-              color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-              position: 'relative', 
-              display: 'inline-block', 
-              marginBottom: '3rem', 
-              textAlign: 'center',
-              width: '100%'
-            }}
-          >
-            Client <span style={{ 
-              background: theme === 'light' ? 'linear-gradient(45deg, #667eea, #764ba2)' : 'linear-gradient(45deg, #CBD5E0, #A0AEC0)', 
-              WebkitBackgroundClip: 'text', 
-              WebkitTextFillColor: 'transparent' 
-            }}>Testimonials</span>
-            <span style={{ 
-              position: 'absolute', 
-              bottom: '-10px', 
-              left: '50%', 
-              transform: 'translateX(-50%)', 
-              width: '80px', 
-              height: '4px', 
-              background: theme === 'light' ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'linear-gradient(135deg, #CBD5E0, #A0AEC0)', 
-              borderRadius: '2px' 
-            }}></span>
-          </motion.h2>
-          <Row className="mt-5">
-            {testimonials.map((test, index) => (
-              <Col lg={4} key={index} className="mb-4">
-                <motion.div 
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }} 
-                  whileInView={{ opacity: 1, x: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ duration: 0.5, delay: index * 0.2 }} 
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Card style={{ 
-                    border: 'none', 
-                    borderRadius: '20px', 
-                    background: theme === 'light' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.1)', 
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)', 
-                    padding: '2rem', 
-                    height: '100%',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    <div className="d-flex align-items-center mb-3">
-                      <img 
-                        src={test.avatar} 
-                        alt={test.name}
-                        style={{ 
-                          width: '60px', 
-                          height: '60px', 
-                          borderRadius: '50%', 
-                          objectFit: 'cover',
-                          marginRight: '1rem'
-                        }}
-                      />
-                      <div>
-                        <Card.Title style={{ 
-                          fontSize: '1.1rem', 
-                          fontWeight: '700', 
-                          color: theme === 'light' ? '#2D3748' : '#F7FAFC', 
-                          marginBottom: '0.2rem' 
-                        }}>
-                          {test.name}
-                        </Card.Title>
-                        <Card.Subtitle style={{ 
-                          opacity: '0.8', 
-                          color: theme === 'light' ? '#4A5568' : '#CBD5E0', 
-                          fontSize: '0.9rem' 
-                        }}>
-                          {test.role}
-                        </Card.Subtitle>
-                      </div>
-                    </div>
-                    <FaUsers style={{ 
-                      fontSize: '2rem', 
-                      color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-                      marginBottom: '1rem', 
-                      opacity: 0.5 
-                    }} />
-                    <Card.Text style={{ 
-                      fontStyle: 'italic', 
-                      marginBottom: '1rem', 
-                      color: theme === 'light' ? '#4A5568' : '#CBD5E0', 
-                      lineHeight: '1.6' 
-                    }}>
-                      "{test.quote}"
-                    </Card.Text>
-                  </Card>
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      {/* Blog Section */}
-      <section id="blog" className="py-5" style={{ 
-        background: theme === 'light' ? '#FFFFFF' : '#2D3748', 
-        color: theme === 'light' ? '#2D3748' : '#F7FAFC' 
-      }}>
-        <Container>
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.7 }} 
-            style={{ 
-              fontSize: '3rem', 
-              fontWeight: '800', 
-              color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-              position: 'relative', 
-              display: 'inline-block', 
-              marginBottom: '3rem', 
-              textAlign: 'center',
-              width: '100%'
-            }}
-          >
-            Latest <span style={{ 
-              background: theme === 'light' ? 'linear-gradient(45deg, #667eea, #764ba2)' : 'linear-gradient(45deg, #CBD5E0, #A0AEC0)', 
-              WebkitBackgroundClip: 'text', 
-              WebkitTextFillColor: 'transparent' 
-            }}>Blog Posts</span>
-            <span style={{ 
-              position: 'absolute', 
-              bottom: '-10px', 
-              left: '50%', 
-              transform: 'translateX(-50%)', 
-              width: '80px', 
-              height: '4px', 
-              background: theme === 'light' ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'linear-gradient(135deg, #CBD5E0, #A0AEC0)', 
-              borderRadius: '2px' 
-            }}></span>
-          </motion.h2>
-          
-          {/* Blog Categories */}
-          <div className="d-flex justify-content-center mb-4">
-            <div className="btn-group" role="group">
-              {['all', 'React', 'Backend', 'AI'].map(category => (
-                <Button
-                  key={category}
-                  variant={activeBlogTab === category ? 'primary' : 'outline-primary'}
-                  onClick={() => setActiveBlogTab(category)}
-                  style={{ 
-                    borderRadius: '20px',
-                    margin: '0 5px',
-                    borderColor: '#667eea',
-                    background: activeBlogTab === category ? 'linear-gradient(135deg, #667eea, #764ba2)' : 'transparent',
-                    color: activeBlogTab === category ? 'white' : '#667eea',
-                    fontWeight: '500',
-                    padding: '8px 20px'
+              <Card.Body style={{ padding: '2.5rem 1.5rem 1.5rem', textAlign: 'center' }}>
+                {/* Title */}
+                <h5
+                  style={{
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    color: '#1A1A1A',
+                    marginBottom: '0.5rem',
+                    lineHeight: '1.4'
                   }}
                 >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                  {cert.title}
+                </h5>
+
+                {/* Issuer */}
+                <p
+                  style={{
+                    color: '#667eea',
+                    fontSize: '0.85rem',
+                    fontWeight: '500',
+                    marginBottom: '1rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}
+                >
+                  {cert.issuer}
+                </p>
+
+                {/* Date */}
+                <div
+                  style={{
+                    background: '#F1F5F9',
+                    color: '#475569',
+                    padding: '4px 12px',
+                    borderRadius: '12px',
+                    fontSize: '0.75rem',
+                    fontWeight: '600',
+                    marginBottom: '1.5rem',
+                    display: 'inline-block'
+                  }}
+                >
+                  {cert.date}
+                </div>
+
+                {/* Action Button */}
+                <Button
+                  size="sm"
+                  onClick={() =>
+                    setCertificateDetails((prev) => ({
+                      ...prev,
+                      [cert.id]: !prev[cert.id]
+                    }))
+                  }
+                  style={{
+                    width: '100%',
+                    border: 'none',
+                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                    color: '#FFFFFF',
+                    borderRadius: '12px',
+                    fontWeight: '600',
+                    fontSize: '0.85rem',
+                    padding: '10px 16px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  {certificateDetails[cert.id] ? 'Hide Details' : 'View Details'}
                 </Button>
+
+                {/* Expandable Details */}
+                <AnimatePresence>
+                  {certificateDetails[cert.id] && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                      animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
+                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <div
+                        style={{
+                          paddingTop: '1rem',
+                          borderTop: '1px solid #E2E8F0'
+                        }}
+                      >
+                        {/* Description */}
+                        <p
+                          style={{
+                            fontSize: '0.8rem',
+                            color: '#64748B',
+                            marginBottom: '1rem',
+                            lineHeight: '1.5'
+                          }}
+                        >
+                          {cert.details.description}
+                        </p>
+
+                        {/* Skills */}
+                        <div style={{ marginBottom: '0.75rem' }}>
+                          <strong style={{ 
+                            color: '#1A1A1A', 
+                            fontSize: '0.8rem', 
+                            display: 'block',
+                            marginBottom: '0.5rem',
+                            fontWeight: '600'
+                          }}>
+                            Key Skills
+                          </strong>
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem' }}>
+                            {cert.details.skills.map((skill, i) => (
+                              <span
+                                key={i}
+                                style={{
+                                  background: '#EFF6FF',
+                                  color: '#3B82F6',
+                                  padding: '2px 8px',
+                                  borderRadius: '8px',
+                                  fontSize: '0.7rem',
+                                  fontWeight: '500'
+                                }}
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Validity */}
+                        <p
+                          style={{
+                            fontSize: '0.75rem',
+                            color: '#64748B',
+                            margin: '0.5rem 0'
+                          }}
+                        >
+                          <strong style={{ color: '#1A1A1A' }}>Valid:</strong>{' '}
+                          <span style={{ color: '#10B981' }}>{cert.details.validity}</span>
+                        </p>
+
+                        {/* Verify Button */}
+                        <Button
+                          variant="link"
+                          href={cert.details.link}
+                          target="_blank"
+                          size="sm"
+                          style={{
+                            color: '#667eea',
+                            fontSize: '0.75rem',
+                            fontWeight: '500',
+                            padding: '0',
+                            textDecoration: 'none'
+                          }}
+                        >
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                            Verify Certificate
+                            <span style={{ fontSize: '0.6rem' }}>→</span>
+                          </span>
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Card.Body>
+            </Card>
+          </motion.div>
+        </Col>
+      ))}
+    </Row>
+  </Container>
+</section>
+{/* Roadmap – Your Learning Journey */}
+<section id="roadmap" className="py-5" style={{ background: '#FFFFFF' }}>
+  <Container>
+    {/* Section Title */}
+    <motion.h2
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      style={{
+        fontSize: '2.8rem',
+        fontWeight: '700',
+        color: '#1A1A1A',
+        textAlign: 'center',
+        marginBottom: '4rem',
+        letterSpacing: '-0.02em'
+      }}
+    >
+      My <span style={{ color: '#667eea', fontWeight: '800' }}>Learning Journey</span>
+    </motion.h2>
+
+    {/* Timeline Container */}
+    <div style={{ position: 'relative', maxWidth: '900px', margin: '0 auto', padding: '2rem 0' }}>
+      {/* Vertical Line */}
+      <motion.div
+        initial={{ height: 0 }}
+        whileInView={{ height: '100%' }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: '50%',
+          width: '3px',
+          background: 'linear-gradient(to bottom, #667eea, #764ba2)',
+          transform: 'translateX(-50%)',
+          borderRadius: '2px',
+          zIndex: 0
+        }}
+      />
+
+      {/* Timeline Items */}
+      {roadmap.map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: index * 0.15 }}
+          style={{
+            marginBottom: '3rem',
+            display: 'flex',
+            justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end',
+            paddingLeft: index % 2 === 0 ? 0 : '50%',
+            paddingRight: index % 2 === 0 ? '50%' : 0,
+            position: 'relative'
+          }}
+        >
+          {/* Timeline Node */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '50%',
+              [index % 2 === 0 ? 'right' : 'left']: '-68px',
+              transform: 'translateY(-50%)',
+              width: '20px',
+              height: '20px',
+              background: '#FFFFFF',
+              border: '4px solid #667eea',
+              borderRadius: '50%',
+              boxShadow: '0 0 0 6px rgba(102, 126, 234, 0.2)',
+              zIndex: 2
+            }}
+          />
+
+          {/* Card */}
+          <motion.div
+            whileHover={{ scale: 1.03, y: -4 }}
+            style={{
+              background: '#FFFFFF',
+              padding: '1.75rem 1.5rem',
+              borderRadius: '16px',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              maxWidth: '420px',
+              width: '100%',
+              position: 'relative',
+              border: '1px solid #E2E8F0'
+            }}
+          >
+            {/* Year */}
+            <div
+              style={{
+                fontSize: '0.8rem',
+                fontWeight: '700',
+                color: '#667eea',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginBottom: '0.5rem'
+              }}
+            >
+              {item.year}
+            </div>
+
+            {/* Title */}
+            <h4
+              style={{
+                fontSize: '1.1rem',
+                fontWeight: '600',
+                color: '#1A1A1A',
+                marginBottom: '0.75rem',
+                lineHeight: '1.4'
+              }}
+            >
+              {item.title}
+            </h4>
+
+            {/* Description */}
+            <p
+              style={{
+                fontSize: '0.9rem',
+                color: '#64748B',
+                marginBottom: '1rem',
+                lineHeight: '1.6'
+              }}
+            >
+              {item.desc}
+            </p>
+
+            {/* Icon */}
+            <div
+              style={{
+                fontSize: '1.8rem',
+                color: '#667eea',
+                marginTop: '0.5rem',
+                display: 'flex',
+                justifyContent: index % 2 === 0 ? 'flex-start' : 'flex-end'
+              }}
+            >
+              {item.icon}
+            </div>
+          </motion.div>
+        </motion.div>
+      ))}
+    </div>
+  </Container>
+</section>
+ {/* Projects Section – Professional, No Image, No GitHub */}
+<section id="projects" className="py-5" style={{ background: '#FFFFFF' }}>
+  <Container>
+    {/* Section Title */}
+    <motion.h2
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      style={{
+        fontSize: '2.8rem',
+        fontWeight: '700',
+        color: '#1A1A1A',
+        textAlign: 'center',
+        marginBottom: '4rem',
+        letterSpacing: '-0.02em'
+      }}
+    >
+      <span style={{ color: '#667eea', fontWeight: '800' }}>Featured</span> Projects
+    </motion.h2>
+
+    {/* Projects Grid */}
+    <Row className="g-4">
+      {projects.map((project, index) => (
+        <Col lg={4} md={6} key={project.id}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileHover={{ y: -8 }}
+          >
+            <Card
+              style={{
+                border: 'none',
+                borderRadius: '16px',
+                background: '#FFFFFF',
+                height: '100%',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                overflow: 'hidden',
+                position: 'relative',
+                border: '1px solid #E2E8F0'
+              }}
+            >
+              {/* Project Icon / Placeholder */}
+              <div
+                style={{
+                  height: '80px',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#FFFFFF',
+                  fontSize: '2rem',
+                  borderRadius: '16px 16px 0 0'
+                }}
+              >
+                <FaCode />
+              </div>
+
+              <Card.Body style={{ padding: '1.75rem 1.5rem' }}>
+                {/* Title */}
+                <h5
+                  style={{
+                    fontSize: '1.1rem',
+                    fontWeight: '600',
+                    color: '#1A1A1A',
+                    marginBottom: '0.75rem',
+                    lineHeight: '1.4'
+                  }}
+                >
+                  {project.title}
+                </h5>
+
+                {/* Description */}
+                <p
+                  style={{
+                    fontSize: '0.9rem',
+                    color: '#64748B',
+                    marginBottom: '1.25rem',
+                    lineHeight: '1.6',
+                    flexGrow: 1
+                  }}
+                >
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+                    {project.technologies.slice(0, 4).map((tech, i) => (
+                      <span
+                        key={i}
+                        style={{
+                          background: '#EFF6FF',
+                          color: '#3B82F6',
+                          padding: '4px 10px',
+                          borderRadius: '10px',
+                          fontSize: '0.7rem',
+                          fontWeight: '500',
+                          letterSpacing: '0.02em'
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <span
+                        style={{
+                          background: '#F8FAFC',
+                          color: '#64748B',
+                          padding: '4px 8px',
+                          borderRadius: '10px',
+                          fontSize: '0.7rem',
+                          fontWeight: '500',
+                          border: '1px dashed #CBD5E1'
+                        }}
+                      >
+                        +{project.technologies.length - 4}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Action Button */}
+                <Button
+                  size="sm"
+                  onClick={() => openProjectModal(project)}
+                  style={{
+                    width: '100%',
+                    border: 'none',
+                    background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                    color: '#FFFFFF',
+                    borderRadius: '12px',
+                    fontWeight: '600',
+                    fontSize: '0.85rem',
+                    padding: '10px 16px',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  View Details
+                </Button>
+              </Card.Body>
+            </Card>
+          </motion.div>
+        </Col>
+      ))}
+    </Row>
+  </Container>
+</section>
+      {/* Get in Touch – Professional & Clean */}
+<section id="contact" className="py-5" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: '#FFFFFF' }}>
+  <Container>
+    {/* Section Title */}
+    <motion.h2
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      style={{
+        fontSize: '2.8rem',
+        fontWeight: '700',
+        textAlign: 'center',
+        marginBottom: '1.5rem',
+        letterSpacing: '-0.02em'
+      }}
+    >
+      Let's <span style={{ fontWeight: '800' }}>Collaborate</span>
+    </motion.h2>
+
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      style={{
+        fontSize: '1.1rem',
+        textAlign: 'center',
+        maxWidth: '600px',
+        margin: '0 auto 3rem',
+        opacity: '0.9',
+        lineHeight: '1.6'
+      }}
+    >
+      Have a project in mind? I'm open to freelance work, full-time opportunities, or just a chat about tech.
+    </motion.p>
+
+    {/* Contact Card */}
+    <Row className="justify-content-center">
+      <Col lg={8} md={10}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          whileHover={{ y: -5 }}
+          style={{
+            background: 'rgba(255, 255, 255, 0.12)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            borderRadius: '20px',
+            padding: '2.5rem',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
+          }}
+        >
+          {/* Email CTA */}
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              style={{ display: 'inline-block' }}
+            >
+              <Button
+                href="mailto:ertihoxha874@gmail.com"
+                size="lg"
+                style={{
+                  background: '#FFFFFF',
+                  color: '#667eea',
+                  border: 'none',
+                  borderRadius: '50px',
+                  padding: '14px 36px',
+                  fontWeight: '600',
+                  fontSize: '1.1rem',
+                  boxShadow: '0 4px 15px rgba(102, 126, 234, 0.2)',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#FFFFFF';
+                  e.currentTarget.style.color = '#667eea';
+                }}
+              >
+                <FaEnvelope style={{ marginRight: '10px', fontSize: '1.2rem' }} />
+                ertihoxha874@gmail.com
+              </Button>
+            </motion.div>
+          </div>
+
+         
+
+          {/* Social Links */}
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <p style={{ fontSize: '0.9rem', opacity: '0.8', marginBottom: '1rem' }}>
+              Or connect with me on:
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+              {[
+                { icon: <FaGithub />, href: 'https://github.com/ertihoxha5', label: 'GitHub' },
+                { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/erti-hoxha-0b8726281/?trk=opento_sprofile_topcard', label: 'LinkedIn' },
+              ].map((social, i) => (
+                <motion.a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    background: 'rgba(255, 255, 255, 0.15)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#FFFFFF',
+                    fontSize: '1.3rem',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                </motion.a>
               ))}
             </div>
           </div>
-
-          <Row className="mt-4">
-            {blogPosts
-              .filter(post => activeBlogTab === 'all' || post.category === activeBlogTab)
-              .map((post, index) => (
-              <Col lg={4} key={post.id} className="mb-4">
-                <motion.div 
-                  initial={{ opacity: 0, y: 50 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ duration: 0.5, delay: index * 0.1 }} 
-                  whileHover={{ scale: 1.03 }}
-                >
-                  <Card style={{ 
-                    border: 'none', 
-                    borderRadius: '20px', 
-                    background: theme === 'light' ? '#F7FAFC' : 'rgba(255, 255, 255, 0.05)', 
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)', 
-                    height: '100%',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    <Card.Body style={{ padding: '1.5rem' }}>
-                      <div className="d-flex justify-content-between align-items-center mb-3">
-                        <Badge 
-                          style={{ 
-                            background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                            color: '#FFFFFF',
-                            padding: '6px 12px',
-                            borderRadius: '15px',
-                            fontSize: '0.8rem',
-                            fontWeight: '500'
-                          }}
-                        >
-                          {post.category}
-                        </Badge>
-                        <small style={{ 
-                          color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                          fontSize: '0.8rem'
-                        }}>
-                          {post.readTime}
-                        </small>
-                      </div>
-                      
-                      <FaBlog style={{ 
-                        fontSize: '2rem', 
-                        color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-                        marginBottom: '1rem' 
-                      }} />
-                      <Card.Title style={{ 
-                        fontSize: '1.3rem', 
-                        fontWeight: '700', 
-                        color: theme === 'light' ? '#2D3748' : '#F7FAFC', 
-                        marginBottom: '1rem', 
-                        minHeight: '60px',
-                        lineHeight: '1.4'
-                      }}>
-                        {post.title}
-                      </Card.Title>
-                      <Card.Text style={{ 
-                        color: theme === 'light' ? '#4A5568' : '#CBD5E0', 
-                        marginBottom: '1.5rem', 
-                        lineHeight: '1.6', 
-                        minHeight: '80px',
-                        fontSize: '0.95rem'
-                      }}>
-                        {post.excerpt}
-                      </Card.Text>
-
-                      {/* Like and Rating System */}
-                      <div className="d-flex justify-content-between align-items-center mb-3">
-                        <div className="d-flex align-items-center">
-                          <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => handleBlogInteraction(post.id, 'like')}
-                            style={{
-                              background: 'none',
-                              border: 'none',
-                              color: blogInteractions[post.id]?.liked ? '#E53E3E' : (theme === 'light' ? '#4A5568' : '#CBD5E0'),
-                              fontSize: '1.2rem',
-                              cursor: 'pointer'
-                            }}
-                          >
-                            <FaThumbsUp />
-                          </motion.button>
-                          <span style={{ 
-                            marginLeft: '0.5rem', 
-                            color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                            fontSize: '0.9rem'
-                          }}>
-                            {post.likes + (blogInteractions[post.id]?.liked ? 1 : 0)}
-                          </span>
-                        </div>
-
-                        <div className="d-flex align-items-center">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <motion.button
-                              key={star}
-                              whileHover={{ scale: 1.2 }}
-                              whileTap={{ scale: 0.9 }}
-                              onClick={() => handleBlogInteraction(post.id, 'rate', star)}
-                              style={{
-                                background: 'none',
-                                border: 'none',
-                                color: star <= (blogInteractions[post.id]?.userRating || post.rating) ? '#F6E05E' : (theme === 'light' ? '#D1D5DB' : '#4A5568'),
-                                fontSize: '1rem',
-                                cursor: 'pointer',
-                                padding: '2px'
-                              }}
-                            >
-                              <FaStar />
-                            </motion.button>
-                          ))}
-                          <span style={{ 
-                            marginLeft: '0.5rem', 
-                            color: theme === 'light' ? '#4A5568' : '#CBD5E0', 
-                            fontSize: '0.9rem' 
-                          }}>
-                            ({post.rating.toFixed(1)})
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Comments Section */}
-                      <div className="mt-3">
-                        <div className="d-flex align-items-center mb-2">
-                          <FaComment style={{ 
-                            color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-                            marginRight: '0.5rem' 
-                          }} />
-                          <small style={{ 
-                            color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                            fontSize: '0.8rem'
-                          }}>
-                            {post.comments.length} comments
-                          </small>
-                        </div>
-                        
-                        {/* Add Comment */}
-                        <div className="mt-2">
-                          <Form.Group>
-                            <Form.Control
-                              as="textarea"
-                              rows={2}
-                              placeholder="Add a comment..."
-                              value={blogInteractions[post.id]?.newComment || ''}
-                              onChange={(e) => setBlogInteractions(prev => ({
-                                ...prev,
-                                [post.id]: { ...prev[post.id], newComment: e.target.value }
-                              }))}
-                              style={{
-                                background: theme === 'light' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.1)',
-                                border: `1px solid ${theme === 'light' ? '#E2E8F0' : '#4A5568'}`,
-                                color: theme === 'light' ? '#2D3748' : '#F7FAFC',
-                                borderRadius: '10px',
-                                fontSize: '0.9rem'
-                              }}
-                            />
-                            <Button
-                              variant="primary"
-                              size="sm"
-                              className="mt-2"
-                              onClick={() => addBlogComment(post.id, blogInteractions[post.id]?.newComment || '')}
-                              style={{
-                                background: 'linear-gradient(135deg, #667eea, #764ba2)',
-                                border: 'none',
-                                borderRadius: '20px',
-                                fontSize: '0.8rem',
-                                padding: '6px 15px'
-                              }}
-                            >
-                              Post Comment
-                            </Button>
-                          </Form.Group>
-                        </div>
-
-                        {/* Comments List */}
-                        {post.comments.slice(0, 2).map((comment) => (
-                          <div key={comment.id} className="mt-2 p-2" style={{ 
-                            background: theme === 'light' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.05)', 
-                            borderRadius: '8px' 
-                          }}>
-                            <div className="d-flex justify-content-between align-items-center">
-                              <strong style={{ 
-                                fontSize: '0.9rem', 
-                                color: theme === 'light' ? '#2D3748' : '#F7FAFC' 
-                              }}>
-                                {comment.user}
-                              </strong>
-                              <small style={{ 
-                                color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                                fontSize: '0.7rem'
-                              }}>
-                                {comment.date}
-                              </small>
-                            </div>
-                            <p style={{ 
-                              fontSize: '0.8rem', 
-                              color: theme === 'light' ? '#4A5568' : '#CBD5E0', 
-                              marginBottom: '0.5rem' 
-                            }}>
-                              {comment.comment}
-                            </p>
-                            <div className="d-flex align-items-center">
-                              <FaThumbsUp style={{ 
-                                fontSize: '0.7rem', 
-                                color: theme === 'light' ? '#4A5568' : '#CBD5E0', 
-                                marginRight: '0.3rem' 
-                              }} />
-                              <small style={{ 
-                                color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                                fontSize: '0.7rem'
-                              }}>
-                                {comment.likes}
-                              </small>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-3 pt-3" style={{ borderTop: '1px solid #E2E8F0' }}>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <small style={{ 
-                            color: theme === 'light' ? '#4A5568' : '#CBD5E0',
-                            fontSize: '0.8rem'
-                          }}>
-                            {post.date}
-                          </small>
-                          <Button 
-                            variant="link" 
-                            href="#" 
-                            style={{ 
-                              color: theme === 'light' ? '#667eea' : '#CBD5E0', 
-                              textDecoration: 'none',
-                              fontSize: '0.9rem',
-                              fontWeight: '500'
-                            }}
-                          >
-                            Read More <FaExternalLinkAlt size={12} className="ms-1" />
-                          </Button>
-                        </div>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-5" style={{ 
-        background: theme === 'light' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'linear-gradient(135deg, #2D3748 0%, #4A5568 100%)', 
-        color: '#FFFFFF'
-      }}>
-        <Container>
-          <motion.h2 
-            initial={{ opacity: 0, y: 50 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ duration: 0.7 }} 
-            style={{ 
-              fontSize: '3rem', 
-              fontWeight: '800', 
-              color: '#FFFFFF', 
-              position: 'relative', 
-              display: 'inline-block', 
-              marginBottom: '3rem', 
-              textAlign: 'center',
-              width: '100%'
-            }}
-          >
-            Get in <span style={{ 
-              background: 'linear-gradient(45deg, #FFFFFF, #F0C4D8)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}>Touch</span>
-            <span style={{ 
-              position: 'absolute', 
-              bottom: '-10px', 
-              left: '50%', 
-              transform: 'translateX(-50%)', 
-              width: '80px', 
-              height: '4px', 
-              background: '#FFFFFF', 
-              borderRadius: '2px' 
-            }}></span>
-          </motion.h2>
-          <Row className="justify-content-center mt-5">
-            <Col lg={10}>
-              <motion.div 
-                initial={{ opacity: 0, y: 50 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }} 
-                transition={{ duration: 0.7 }}
-              >
-                <Card style={{ 
-                  border: 'none', 
-                  borderRadius: '20px', 
-                  background: 'rgba(255, 255, 255, 0.1)', 
-                  backdropFilter: 'blur(20px)', 
-                  border: '1px solid rgba(255, 255, 255, 0.2)', 
-                  padding: '2rem' 
-                }}>
-                  <Card.Body>
-                    {formStatus && (
-                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-                        <Alert 
-                          variant={formStatus.type} 
-                          onClose={() => setFormStatus(null)} 
-                          dismissible 
-                          style={{ 
-                            background: formStatus.type === 'success' ? 'rgba(72, 187, 120, 0.9)' : 'rgba(237, 137, 54, 0.9)', 
-                            color: '#FFFFFF', 
-                            border: 'none', 
-                            borderRadius: '10px',
-                            backdropFilter: 'blur(10px)'
-                          }}
-                        >
-                          {formStatus.message}
-                        </Alert>
-                      </motion.div>
-                    )}
-                    <Row>
-                      <Col md={6} className="mb-4">
-                        <motion.div 
-                          initial={{ opacity: 0, x: -50 }} 
-                          animate={{ opacity: 1, x: 0 }} 
-                          transition={{ duration: 0.5 }}
-                        >
-                          <h4 style={{ 
-                            fontWeight: '700', 
-                            color: '#FFFFFF', 
-                            marginBottom: '2rem',
-                            fontSize: '1.5rem'
-                          }}>
-                            Connect with Me
-                          </h4>
-                          {[
-                            { icon: <FaEnvelope />, title: 'Email', value: 'ertihoxha874@gmail.com', href: 'mailto:ertihoxha874@gmail.com' },
-                            { icon: <FaPhone />, title: 'Phone', value: '+355 XX XXX XXXX', href: 'tel:+355123456789' },
-                            { icon: <FaMapMarkerAlt />, title: 'Location', value: 'Tirana, Albania', href: '#' },
-                            { icon: <FaCalendarAlt />, title: 'Schedule', value: 'Book a meeting', href: 'https://calendly.com/ertihoxha' }
-                          ].map((item, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: i * 0.1 }}
-                              whileHover={{ scale: 1.05 }}
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                padding: '1.2rem',
-                                background: 'rgba(255, 255, 255, 0.1)',
-                                borderRadius: '15px',
-                                marginBottom: '1rem',
-                                cursor: 'pointer',
-                                backdropFilter: 'blur(10px)',
-                                border: '1px solid rgba(255, 255, 255, 0.2)'
-                              }}
-                              onClick={() => window.open(item.href, '_blank')}
-                            >
-                              <div style={{ 
-                                fontSize: '1.5rem', 
-                                marginRight: '1rem', 
-                                color: '#FFFFFF' 
-                              }}>
-                                {item.icon}
-                              </div>
-                              <div>
-                                <h6 style={{ 
-                                  marginBottom: '0.2rem', 
-                                  fontWeight: '600', 
-                                  color: '#FFFFFF',
-                                  fontSize: '1rem'
-                                }}>
-                                  {item.title}
-                                </h6>
-                                <div style={{ 
-                                  color: '#FFFFFF', 
-                                  opacity: '0.9', 
-                                  fontSize: '0.9rem' 
-                                }}>
-                                  {item.value}
-                                </div>
-                              </div>
-                            </motion.div>
-                          ))}
-                          
-                          <div className="d-flex justify-content-center gap-3 mt-4">
-                            {[
-                              { icon: <FaGithub />, href: 'https://github.com/ertihoxha' },
-                              { icon: <FaLinkedin />, href: 'https://linkedin.com/in/ertihoxha' },
-                              { icon: <FaTwitter />, href: 'https://twitter.com/ertihoxha' },
-                              { icon: <FaEnvelope />, href: 'mailto:ertihoxha874@gmail.com' }
-                            ].map((social, i) => (
-                              <motion.a
-                                key={i}
-                                whileHover={{ scale: 1.2, y: -5 }}
-                                whileTap={{ scale: 0.9 }}
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                  width: '50px',
-                                  height: '50px',
-                                  background: 'rgba(255, 255, 255, 0.2)',
-                                  borderRadius: '50%',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  color: '#FFFFFF',
-                                  fontSize: '1.3rem',
-                                  textDecoration: 'none',
-                                  backdropFilter: 'blur(10px)',
-                                  border: '1px solid rgba(255, 255, 255, 0.3)'
-                                }}
-                              >
-                                {social.icon}
-                              </motion.a>
-                            ))}
-                          </div>
-                        </motion.div>
-                      </Col>
-                      <Col md={6}>
-                        <motion.form 
-                          initial={{ opacity: 0, x: 50 }} 
-                          animate={{ opacity: 1, x: 0 }} 
-                          transition={{ duration: 0.5 }} 
-                          noValidate 
-                          validated={validated} 
-                          onSubmit={handleSubmit}
-                        >
-                          <Form.Group className="mb-3" controlId="formName">
-                            <Form.Label style={{ 
-                              color: '#FFFFFF', 
-                              fontWeight: '600',
-                              fontSize: '1rem'
-                            }}>
-                              Full Name
-                            </Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="name"
-                              placeholder="Enter your name"
-                              value={formData.name}
-                              onChange={handleInputChange}
-                              required
-                              style={{ 
-                                background: 'rgba(255, 255, 255, 0.1)', 
-                                border: '1px solid rgba(255, 255, 255, 0.3)', 
-                                borderRadius: '10px', 
-                                color: '#FFFFFF', 
-                                padding: '12px',
-                                backdropFilter: 'blur(10px)'
-                              }}
-                            />
-                            <Form.Control.Feedback type="invalid" style={{ color: '#F0C4D8' }}>
-                              Please provide your name.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                          <Form.Group className="mb-3" controlId="formEmail">
-                            <Form.Label style={{ 
-                              color: '#FFFFFF', 
-                              fontWeight: '600',
-                              fontSize: '1rem'
-                            }}>
-                              Email Address
-                            </Form.Label>
-                            <Form.Control
-                              type="email"
-                              name="email"
-                              placeholder="Enter your email"
-                              value={formData.email}
-                              onChange={handleInputChange}
-                              required
-                              style={{ 
-                                background: 'rgba(255, 255, 255, 0.1)', 
-                                border: '1px solid rgba(255, 255, 255, 0.3)', 
-                                borderRadius: '10px', 
-                                color: '#FFFFFF', 
-                                padding: '12px',
-                                backdropFilter: 'blur(10px)'
-                              }}
-                            />
-                            <Form.Control.Feedback type="invalid" style={{ color: '#F0C4D8' }}>
-                              Please provide a valid email.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                          <Form.Group className="mb-3" controlId="formSubject">
-                            <Form.Label style={{ 
-                              color: '#FFFFFF', 
-                              fontWeight: '600',
-                              fontSize: '1rem'
-                            }}>
-                              Subject
-                            </Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="subject"
-                              placeholder="Enter the subject"
-                              value={formData.subject}
-                              onChange={handleInputChange}
-                              required
-                              style={{ 
-                                background: 'rgba(255, 255, 255, 0.1)', 
-                                border: '1px solid rgba(255, 255, 255, 0.3)', 
-                                borderRadius: '10px', 
-                                color: '#FFFFFF', 
-                                padding: '12px',
-                                backdropFilter: 'blur(10px)'
-                              }}
-                            />
-                            <Form.Control.Feedback type="invalid" style={{ color: '#F0C4D8' }}>
-                              Please provide a subject.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                          <Form.Group className="mb-3" controlId="formMessage">
-                            <Form.Label style={{ 
-                              color: '#FFFFFF', 
-                              fontWeight: '600',
-                              fontSize: '1rem'
-                            }}>
-                              Your Message
-                            </Form.Label>
-                            <Form.Control
-                              as="textarea"
-                              rows={5}
-                              name="message"
-                              placeholder="Tell me about your project or ideas..."
-                              value={formData.message}
-                              onChange={handleInputChange}
-                              required
-                              style={{ 
-                                background: 'rgba(255, 255, 255, 0.1)', 
-                                border: '1px solid rgba(255, 255, 255, 0.3)', 
-                                borderRadius: '10px', 
-                                color: '#FFFFFF', 
-                                padding: '12px',
-                                backdropFilter: 'blur(10px)'
-                              }}
-                            />
-                            <Form.Control.Feedback type="invalid" style={{ color: '#F0C4D8' }}>
-                              Please provide a message.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                          <motion.button 
-                            type="submit" 
-                            whileHover={{ scale: 1.05 }} 
-                            whileTap={{ scale: 0.95 }} 
-                            style={{ 
-                              background: '#FFFFFF',
-                              border: 'none', 
-                              padding: '15px 40px', 
-                              borderRadius: '50px', 
-                              color: '#667eea', 
-                              fontWeight: '600', 
-                              cursor: 'pointer', 
-                              width: '100%',
-                              fontSize: '1rem'
-                            }}
-                          >
-                            Send Message
-                          </motion.button>
-                        </motion.form>
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
-              </motion.div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
+        </motion.div>
+      </Col>
+    </Row>
+  </Container>
+</section>
       {/* Footer */}
       <footer style={{ 
         background: theme === 'light' ? '#2D3748' : '#4A5568', 
@@ -2318,7 +1819,7 @@ const AdvancedPortfolio = () => {
                 gap: '1.5rem', 
                 margin: '2rem 0' 
               }}>
-                {[<FaGithub />, <FaLinkedin />, <FaTwitter />, <FaEnvelope />].map((icon, i) => (
+                {[<FaGithub />, <FaLinkedin />,  <FaEnvelope />].map((icon, i) => (
                   <motion.a 
                     key={i} 
                     whileHover={{ scale: 1.2, y: -5 }} 
@@ -2542,22 +2043,7 @@ const AdvancedPortfolio = () => {
                 ertihoxha874@gmail.com
               </a>
             </p>
-            <p><strong>Phone:</strong> +355 XX XXX XXXX</p>
-            <p>
-              <strong>Schedule a Call:</strong> 
-              <a 
-                href="https://calendly.com/ertihoxha" 
-                style={{ 
-                  color: '#667eea', 
-                  textDecoration: 'none',
-                  marginLeft: '0.5rem'
-                }} 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                Book a time slot
-              </a>
-            </p>
+        
           </div>
         </Modal.Body>
       </Modal>
