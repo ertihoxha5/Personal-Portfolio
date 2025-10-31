@@ -1,11 +1,8 @@
 {
-  "name": "ertihoxha",
-  "main": "src/index.js",
+  "name": "erti-hoxha-portfolio",
+  "main": "src/worker.js",
   "compatibility_date": "2025-10-31",
   "assets": {
-    "directory": "./dist"
-  },
-  "site": {
-    "bucket": "./dist"
+    "directory": "./build"
   }
 }
